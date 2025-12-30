@@ -1,0 +1,16 @@
+{
+  "name": "todoapp-be",
+  "version": "1.0.0",
+  "description": "Backend for Todo Application",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
