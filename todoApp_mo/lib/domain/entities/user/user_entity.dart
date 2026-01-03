@@ -1,0 +1,17 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
+part 'user_entity.freezed.dart';
+part 'user_entity.g.dart';
+
+@freezed
+abstract class UserEntity with _$UserEntity {
+  const factory UserEntity({
+    String? id,
+    String? username,
+    String? email,
+    String? passwordHash,
+  }) = _UserEntity;
+
+  factory UserEntity.fromJson(Map<String, dynamic> json) =>
+      _$UserEntityFromJson(json);
+}
