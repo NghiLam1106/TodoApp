@@ -128,10 +128,10 @@ return loadUser(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function()?  login,TResult Function()?  logout,TResult Function( String username,  String email,  String passwordHash)?  register,TResult Function()?  loadUser,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( String email,  String passwordHash)?  login,TResult Function()?  logout,TResult Function( String username,  String email,  String passwordHash)?  register,TResult Function()?  loadUser,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _Login() when login != null:
-return login();case _Logout() when logout != null:
+return login(_that.email,_that.passwordHash);case _Logout() when logout != null:
 return logout();case _Register() when register != null:
 return register(_that.username,_that.email,_that.passwordHash);case _LoadUser() when loadUser != null:
 return loadUser();case _:
@@ -152,10 +152,10 @@ return loadUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function()  login,required TResult Function()  logout,required TResult Function( String username,  String email,  String passwordHash)  register,required TResult Function()  loadUser,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( String email,  String passwordHash)  login,required TResult Function()  logout,required TResult Function( String username,  String email,  String passwordHash)  register,required TResult Function()  loadUser,}) {final _that = this;
 switch (_that) {
 case _Login():
-return login();case _Logout():
+return login(_that.email,_that.passwordHash);case _Logout():
 return logout();case _Register():
 return register(_that.username,_that.email,_that.passwordHash);case _LoadUser():
 return loadUser();case _:
@@ -175,10 +175,10 @@ return loadUser();case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function()?  login,TResult? Function()?  logout,TResult? Function( String username,  String email,  String passwordHash)?  register,TResult? Function()?  loadUser,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( String email,  String passwordHash)?  login,TResult? Function()?  logout,TResult? Function( String username,  String email,  String passwordHash)?  register,TResult? Function()?  loadUser,}) {final _that = this;
 switch (_that) {
 case _Login() when login != null:
-return login();case _Logout() when logout != null:
+return login(_that.email,_that.passwordHash);case _Logout() when logout != null:
 return logout();case _Register() when register != null:
 return register(_that.username,_that.email,_that.passwordHash);case _LoadUser() when loadUser != null:
 return loadUser();case _:
@@ -193,33 +193,69 @@ return loadUser();case _:
 
 
 class _Login implements AuthEvent {
-  const _Login();
+  const _Login({required this.email, required this.passwordHash});
   
 
+ final  String email;
+ final  String passwordHash;
 
-
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$LoginCopyWith<_Login> get copyWith => __$LoginCopyWithImpl<_Login>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Login);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _Login&&(identical(other.email, email) || other.email == email)&&(identical(other.passwordHash, passwordHash) || other.passwordHash == passwordHash));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,email,passwordHash);
 
 @override
 String toString() {
-  return 'AuthEvent.login()';
+  return 'AuthEvent.login(email: $email, passwordHash: $passwordHash)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class _$LoginCopyWith<$Res> implements $AuthEventCopyWith<$Res> {
+  factory _$LoginCopyWith(_Login value, $Res Function(_Login) _then) = __$LoginCopyWithImpl;
+@useResult
+$Res call({
+ String email, String passwordHash
+});
 
 
+
+
+}
+/// @nodoc
+class __$LoginCopyWithImpl<$Res>
+    implements _$LoginCopyWith<$Res> {
+  __$LoginCopyWithImpl(this._self, this._then);
+
+  final _Login _self;
+  final $Res Function(_Login) _then;
+
+/// Create a copy of AuthEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? email = null,Object? passwordHash = null,}) {
+  return _then(_Login(
+email: null == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
+as String,passwordHash: null == passwordHash ? _self.passwordHash : passwordHash // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
 
 /// @nodoc
 

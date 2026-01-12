@@ -1,4 +1,6 @@
 import 'package:go_router/go_router.dart';
+import 'package:todo_app/domain/entities/user/user_entity.dart';
+import 'package:todo_app/presentation/pages/home/home_page.dart';
 import 'package:todo_app/presentation/pages/login/login_page.dart';
 import 'package:todo_app/presentation/pages/register/register_page.dart';
 
@@ -23,7 +25,19 @@ class AppRouter {
           name: 'register',
           builder: (context, state) => const RegisterPage(),
         ),
-      ]
+        GoRoute(
+          path: AppRoutes.home,
+          name: 'home',
+          builder: (context, state) {
+            final user = state.extra as UserEntity?;
+            if (user == null) {
+              // Nếu không có user, redirect về login
+              return const LoginPage();
+            }
+            return HomePage(user: user);
+          },
+        ),
+      ],
     );
   }
 }

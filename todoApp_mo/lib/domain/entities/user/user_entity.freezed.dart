@@ -15,7 +15,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$UserEntity {
 
- String? get id; String? get username; String? get email; String? get passwordHash;
+ int? get id; String? get username; String? get email; String? get passwordHash;
 /// Create a copy of UserEntity
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -48,7 +48,7 @@ abstract mixin class $UserEntityCopyWith<$Res>  {
   factory $UserEntityCopyWith(UserEntity value, $Res Function(UserEntity) _then) = _$UserEntityCopyWithImpl;
 @useResult
 $Res call({
- String? id, String? username, String? email, String? passwordHash
+ int? id, String? username, String? email, String? passwordHash
 });
 
 
@@ -68,7 +68,7 @@ class _$UserEntityCopyWithImpl<$Res>
 @pragma('vm:prefer-inline') @override $Res call({Object? id = freezed,Object? username = freezed,Object? email = freezed,Object? passwordHash = freezed,}) {
   return _then(_self.copyWith(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as int?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,passwordHash: freezed == passwordHash ? _self.passwordHash : passwordHash // ignore: cast_nullable_to_non_nullable
 as String?,
@@ -156,7 +156,7 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String? id,  String? username,  String? email,  String? passwordHash)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( int? id,  String? username,  String? email,  String? passwordHash)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _UserEntity() when $default != null:
 return $default(_that.id,_that.username,_that.email,_that.passwordHash);case _:
@@ -177,7 +177,7 @@ return $default(_that.id,_that.username,_that.email,_that.passwordHash);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String? id,  String? username,  String? email,  String? passwordHash)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( int? id,  String? username,  String? email,  String? passwordHash)  $default,) {final _that = this;
 switch (_that) {
 case _UserEntity():
 return $default(_that.id,_that.username,_that.email,_that.passwordHash);case _:
@@ -197,7 +197,7 @@ return $default(_that.id,_that.username,_that.email,_that.passwordHash);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String? id,  String? username,  String? email,  String? passwordHash)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( int? id,  String? username,  String? email,  String? passwordHash)?  $default,) {final _that = this;
 switch (_that) {
 case _UserEntity() when $default != null:
 return $default(_that.id,_that.username,_that.email,_that.passwordHash);case _:
@@ -215,7 +215,7 @@ class _UserEntity implements UserEntity {
   const _UserEntity({this.id, this.username, this.email, this.passwordHash});
   factory _UserEntity.fromJson(Map<String, dynamic> json) => _$UserEntityFromJson(json);
 
-@override final  String? id;
+@override final  int? id;
 @override final  String? username;
 @override final  String? email;
 @override final  String? passwordHash;
@@ -253,7 +253,7 @@ abstract mixin class _$UserEntityCopyWith<$Res> implements $UserEntityCopyWith<$
   factory _$UserEntityCopyWith(_UserEntity value, $Res Function(_UserEntity) _then) = __$UserEntityCopyWithImpl;
 @override @useResult
 $Res call({
- String? id, String? username, String? email, String? passwordHash
+ int? id, String? username, String? email, String? passwordHash
 });
 
 
@@ -273,7 +273,7 @@ class __$UserEntityCopyWithImpl<$Res>
 @override @pragma('vm:prefer-inline') $Res call({Object? id = freezed,Object? username = freezed,Object? email = freezed,Object? passwordHash = freezed,}) {
   return _then(_UserEntity(
 id: freezed == id ? _self.id : id // ignore: cast_nullable_to_non_nullable
-as String?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
+as int?,username: freezed == username ? _self.username : username // ignore: cast_nullable_to_non_nullable
 as String?,email: freezed == email ? _self.email : email // ignore: cast_nullable_to_non_nullable
 as String?,passwordHash: freezed == passwordHash ? _self.passwordHash : passwordHash // ignore: cast_nullable_to_non_nullable
 as String?,

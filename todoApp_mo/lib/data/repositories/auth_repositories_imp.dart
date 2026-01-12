@@ -30,14 +30,30 @@ class AuthRepositoriesImp implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, UserEntity>> login() {
-    // TODO: implement login
-    throw UnimplementedError();
+  Future<Either<Failure, UserEntity>> login({
+    required String email,
+    required String passwordHash,
+  }) async {
+    try {
+      final user = await authRemoteDatasources.login(
+        email: email,
+        passwordHash: passwordHash,
+      );
+      return Right(user);
+    } catch (e) {
+      debugPrint('Login error: $e');
+      return Left(ServerFailure('Login failed: $e'));
+    }
   }
 
   @override
-  Future<Either<Failure, void>> logout() {
-    // TODO: implement logout
-    throw UnimplementedError();
+  Future<Either<Failure, Unit>> logout() async {
+    try {
+      await authRemoteDatasources.logout();
+      return const Right(unit);
+    } catch (e) {
+      debugPrint('Logout error: $e');
+      return Left(ServerFailure('Logout failed: $e'));
+    }
   }
 }

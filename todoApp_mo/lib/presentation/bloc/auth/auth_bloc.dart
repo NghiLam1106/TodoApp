@@ -19,43 +19,36 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
   Future<void> _onLogin(_Login event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
-    try {
-      final result = await _repository.login();
-      result.fold(
-        (failure) => emit(AuthState.error(failure.message)),
-        (user) => emit(AuthState.authenticated(user)),
-      );
-    } catch (e, s) {
-      emit(AuthState.error('Login with Google failed: $e'));
-      addError(e, s);
-    }
+    final result = await _repository.login(
+      email: event.email,
+      passwordHash: event.passwordHash,
+    );
+    result.fold(
+      (failure) => emit(AuthState.error(failure.message)),
+      (user) => emit(AuthState.authenticated(user)),
+    );
   }
 
   Future<void> _onRegister(_Register event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
-      final result = await _repository.register(
-        username: event.username,
-        email: event.email,
-        passwordHash: event.passwordHash,
-      );
-      result.fold(
-        (failure) => emit(AuthState.error(failure.message)),
-        (_) => emit(const AuthState.success()),
-      );
+    final result = await _repository.register(
+      username: event.username,
+      email: event.email,
+      passwordHash: event.passwordHash,
+    );
+    result.fold(
+      (failure) => emit(AuthState.error(failure.message)),
+      (_) => emit(const AuthState.success()),
+    );
   }
 
   Future<void> _onLogout(_Logout event, Emitter<AuthState> emit) async {
     emit(const AuthState.loading());
-    try {
-      final result = await _repository.logout();
-      result.fold(
-        (failure) => emit(AuthState.error(failure.message)),
-        (_) => emit(const AuthState.success()),
-      );
-    } catch (e, s) {
-      emit(AuthState.error('Logout failed: $e'));
-      addError(e, s);
-    }
+    final result = await _repository.logout();
+    result.fold(
+      (failure) => emit(AuthState.error(failure.message)),
+      (_) => emit(const AuthState.success()),
+    );
   }
 
   Future<void> _onLoadUser(_LoadUser event, Emitter<AuthState> emit) async {
